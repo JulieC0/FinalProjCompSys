@@ -15,12 +15,12 @@
 #define maxIntLength 10
 #define error (-1)
 
-int readInputs(char *inputs, char *fsmFile, int *step);
-int findNextState(char *fsmFile, const int *currentState, char *input, const int *currentStep);
+int readInputs(char *inputs, char *fsmFile, int *step, const int *debug);
+int findNextState(char *fsmFile, const int *currentState, char *input, const int *currentStep, const int *debug);
 
 //this function reads through the inputs file line by line and for each input line, calls findNextState
 // which loops through the fsm file to find the transition for the current input and state
-int readInputs(char *inputs, char *fsmFile, int *step) {
+int readInputs(char *inputs, char *fsmFile, int *step, const int *debug) {
     int currentState = 0;
     int nextState = -1; // default to return to show error if error occurs because states must be >= 0
     char input[inputLineGrab] = ""; //to hold our input letter and \n
@@ -30,7 +30,7 @@ int readInputs(char *inputs, char *fsmFile, int *step) {
         if (fgets(input, 4, inFile) != NULL) { //put line into input string/array
             *step = *step + 1; //increment step suing pointer and de-referencing
             //input = "a\n" or "A\n"- we checked this format in fileFunctions.h
-            nextState = findNextState(fsmFile, &currentState, input, step); //call findNextState to find transition
+            nextState = findNextState(fsmFile, &currentState, input, step, debug); //call findNextState to find transition
             if (nextState == -1){ //if nextState is -1, it means there was an error somewhere in findNextState --> exit function and go to main
                 fclose(inFile);
                 return nextState;
@@ -40,7 +40,8 @@ int readInputs(char *inputs, char *fsmFile, int *step) {
     }
     return currentState; //return final state at the end
 }
-int findNextState(char *fsmFile, const int *currentState, char *input, const int *step){
+int findNextState(char *fsmFile, const int *currentState, char *input, const int *step, const int *debug){
+    //format of file was already checked in processing.
     int nextState;
     char state[stateLength] = ""; //to hold state as char instead of int
     sprintf(state, "%d", *currentState); //puts current state into state array by converting currentState to a string
@@ -106,40 +107,41 @@ int findNextState(char *fsmFile, const int *currentState, char *input, const int
                                     char *ptr = "";
                                     //convert our state to a long long to check whether it is larger than an int can hold
                                     // we are only allowed to use valid integers for states
-                                    long long value = strtol(stateN, &ptr, 10);
+                                    /*long long value = strtol(stateN, &ptr, 10);
                                     //check if nextState is a valid int
                                     if (strlen(stateN)>maxIntLength || value>INT_MAX){ //by checking nextState, we also make sure currentState is valid
-                                        printf("Incorrect state transition value in FSM file at state %d and input %c. "
-                                               "Next state value exceeded max integer value in C language. Terminating Program.", *currentState, input[0]);
+                                        if (!*debug) {
+                                            printf("Incorrect state transition value in FSM file at state %d and input %c. "
+                                                   "Next state value exceeded max integer value in C language. Terminating Program.",
+                                                   *currentState, input[0]);
+                                        }
                                         fclose(fsm);
                                         return error;
-                                    }
+                                    }*/
                                     //if nextState is a valid number, convert to int and return it after printf
                                     long int nS;
                                     nS = strtol(stateN, &ptr, 10);
                                     nextState = (int) nS;
-                                    printf("\t at step %d, input %c transitions FSM from state %d to state %d\n",
-                                           *step, input[0], *currentState, nextState);
+                                    if (!*debug) {
+                                        printf("\t at step %d, input %c transitions FSM from state %d to state %d\n",
+                                               *step, input[0], *currentState, nextState);
+                                    }
                                     fclose(fsm);
                                     return nextState;
                                 }
-                                else if (holder[t + 3] == '-' && holder[t + 4] >= '0' && holder[t+4]<='9'){ //if char after '>' is '-' and next char is a number
-                                    // it is in incorrect format bc negative numbers aren't allowed
-                                    printf("Negative state numbers are not allowed in the FSM definition file. Terminating Program.");
-                                    fclose(fsm);
-                                    return error;
-                                }
                             }
-
                         }
                     }
                 }
             }
         }
     }
-    // if got here, means there was no match found - bad input or fsm file didn't fit format
+    // if got here, means there was no match found - bad input for current state
     //if state not there bc it is a dead end state also, then we give error
-    printf("FSM definition file is in incorrect format or an incorrect input was entered for the current state. Terminating Program.");
+    if (!*debug) {
+        //FSM definition file is in incorrect format or
+        printf("An incorrect input was entered for the current state. Terminating Program.");
+    }
     fclose(fsm);
     return error;
 }
