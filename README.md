@@ -24,7 +24,7 @@ processing FSM inputs file test1.inputs
   
   at step 7, input c transitions FSM from state 1 to state 2
   
-after 8 steps, state machine finished successfully at state 2
+after 8 steps, state machine finished successfully at state 2,
 
 You would need to run the program like this:
 ./main ./FSMdef.fsm ./in.inputs
