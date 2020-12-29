@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
     //argv[2] is inputs file
     //check that files are able to be opened
     int fileInputs = readFiles(argc, argv[1], argv[2], &debug);
-    //readFiles also checks that the FSM def file has at most 50 states and that all start states are valid
+    //readFiles also checks that the FSM def file has at most 50 states and is in valid format on all lines
     //it also checks that all input lines are valid and that the number of lines in the inputs file does not exceed 250
     if (fileInputs < 0){ //if it is < 0, it means there was an issue opening one of the files or an issue processing one of he files
         exit(1);
