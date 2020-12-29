@@ -193,7 +193,7 @@ void testWithValidFSMFile(char *fsm, char*fsm2, int expect, const int *debug){
     //printf("Expect Program to print out nothing.\n");
     int v = validStartStates(fsm, debug);
     int v2 = validStartStates(fsm2, debug);
-    int vAll = v==1&&v2==1? 1 : 0;
+    int vAll = v==16&&v2==76? 1 : 0;
     //if (vAll){ //if both are successful
         //printf("Program printed nothing. FSM files pass this function.");
     printf("%s: result=%d, expected=%d, actual=%d\n",

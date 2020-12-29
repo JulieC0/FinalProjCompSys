@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/FinalProjCompSys.dir/main.c.o"
+  "CMakeFiles/FinalProjCompSys.dir/testProgram.c.o"
   "FinalProjCompSys"
   "FinalProjCompSys.pdb"
 )

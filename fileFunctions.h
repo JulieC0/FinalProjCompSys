@@ -48,21 +48,14 @@ int readFiles(int argc, char *arg1, char *arg2, const int *debug){
         if (!*debug) {
             printf("processing FSM definition file %s\n", arg1);
         }
-        int count = 0;
-        char line[50];
-        //read through file and count the number of lines (= # of transitions in file)
-        while (!feof(f1)) { //read inputs file line by line
-            if (fgets(line, 50, f1) != NULL) { //put line into input string
-                count += 1;
-            }
-        }
         fclose(f1);
         int n = validStartStates(arg1, debug);
         if (n<0){ //if there was an issue validating the fsm file, error will be printed within validStates()
             return error; //return -1 to reflect that there was an error
         }
         if (!*debug) {
-            printf("FSM has %d transitions\n", count);
+            //printf("FSM has %d transitions\n", count);
+            printf("FSM has %d transitions\n", n);
         }
     }
     //now try to open inputs file
@@ -94,6 +87,7 @@ int validStartStates(char *fsmFile, const int *debug) {
     char states[fiftyStatesMax] = ""; //to hold list of all states - enough room for 50 separators and 50 ints of size 10
     int position = 0; //hold position in states we are at when we add a new state
     int count = 0; //to count number of unique states
+    int lines = 0; //to count number of transition lines
     char *ptr = "";
     int k;
     int zero = 0;
@@ -239,6 +233,7 @@ int validStartStates(char *fsmFile, const int *debug) {
                     return error;
                 }
             }
+            lines+=1;
         }
     }
     if (!zero){ //will see if there is no transition for zero - this also happens ot catch empty files
@@ -250,7 +245,7 @@ int validStartStates(char *fsmFile, const int *debug) {
         return error;
     }
     fclose(fsm);
-    return success; //on success
+    return lines; //on success
 }
 //this function checks that all input lines are valid and that the number of lines in the inputs file does not exceed 250
 int validInputLines(char* input, const int *debug){

@@ -3,4 +3,4 @@ project(FinalProjCompSys C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(FinalProjCompSys main.c)
+add_executable(FinalProjCompSys testProgram.c)

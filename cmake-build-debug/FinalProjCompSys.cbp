@@ -78,7 +78,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/juliechase/CLionProjects/FinalProjCompSys/main.c">
+		<Unit filename="/Users/juliechase/CLionProjects/FinalProjCompSys/testProgram.c">
 			<Option target="FinalProjCompSys"/>
 		</Unit>
 		<Unit filename="/Users/juliechase/CLionProjects/FinalProjCompSys/CMakeLists.txt">
