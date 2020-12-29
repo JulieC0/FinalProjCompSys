@@ -40,8 +40,7 @@ gcc -o testProgram testProgram.c
 
 and then after running the gcc just type ./testProgram into the command line and it should give these results:
 
-Test 1: Passing too little command line arguments to program.
-
+Test 1: Passing too little command line arguments to program.\n
 PASSED: result=-1, expected=-1, actual=-1
 
 Test 2: Passing too many command line arguments to program.
