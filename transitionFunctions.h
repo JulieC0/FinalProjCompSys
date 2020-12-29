@@ -105,19 +105,6 @@ int findNextState(char *fsmFile, const int *currentState, char *input, const int
                                         }
                                     }
                                     char *ptr = "";
-                                    //convert our state to a long long to check whether it is larger than an int can hold
-                                    // we are only allowed to use valid integers for states
-                                    /*long long value = strtol(stateN, &ptr, 10);
-                                    //check if nextState is a valid int
-                                    if (strlen(stateN)>maxIntLength || value>INT_MAX){ //by checking nextState, we also make sure currentState is valid
-                                        if (!*debug) {
-                                            printf("Incorrect state transition value in FSM file at state %d and input %c. "
-                                                   "Next state value exceeded max integer value in C language. Terminating Program.",
-                                                   *currentState, input[0]);
-                                        }
-                                        fclose(fsm);
-                                        return error;
-                                    }*/
                                     //if nextState is a valid number, convert to int and return it after printf
                                     long int nS;
                                     nS = strtol(stateN, &ptr, 10);

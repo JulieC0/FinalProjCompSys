@@ -13,6 +13,7 @@ void testInvalidInputFile(char *fsm, char *infile, int expect, const int *debug)
 void testOutputWithValidFiles(char *fsm, char *infile, int expect, const int *debug);
 void testFSMTooManyStates(char *fsm, int expect, const int *debug);
 void testEmptyFSMFile(char *fsm, int expect, const int *debug);
+void testNoZeroStatesFSMFile(char *fsm, int expect, const int *debug);
 void testTooLargeStateFSMFile(char *fsm, int expect, const int *debug);
 void testNegStartStateFSMFile(char *fsm, int expect, const int *debug);
 void testLineTooLongFSMFile(char *fsm, int expect, const int *debug);
@@ -22,9 +23,9 @@ void testEmptyInputFile(char *input, int expect, const int *debug);
 void testInvalidInputInFile(char *input, char *input2, int expect, const int *debug);
 void testValidInputInFile(char *input, char *input2, int expect, const int *debug);
 //testers for transitionFunctions.h
-void testTooLargeNextState(char *input, char *fsm, int expect, const int *debug);
-void testNegativeNextState(char *input, char *fsm, int expect, const int *debug);
-void testNumbersAndCharsNextState(char *input, char *fsm, int expect, const int *debug);
+void testTooLargeNextState(char *fsm, int expect, const int *debug);
+void testNegativeNextState(char *fsm, int expect, const int *debug);
+void testNumbersAndCharsNextState(char *fsm, int expect, const int *debug);
 void testInputHasNoMatch(char *input, char *fsm, int expect, const int *debug);
 void testInputandFSMValid(char *input, char *fsm, int expect, const int *debug);
 
@@ -45,33 +46,35 @@ int main(void){
     printf("\nTest 7: ");
     testEmptyFSMFile("./emptyFSM.fsm", -1, &debug);
     printf("\nTest 8: ");
-    testTooLargeStateFSMFile("./FSMinvalidState.fsm", -1, &debug);
+    testNoZeroStatesFSMFile("./FSMno0.fsm", -1, &debug);
     printf("\nTest 9: ");
-    testNegStartStateFSMFile("./FSMnegStart.fsm", -1, &debug);
+    testTooLargeStateFSMFile("./FSMinvalidState.fsm", -1, &debug);
     printf("\nTest 10: ");
-    testLineTooLongFSMFile("./FSMlineLong.fsm", -1, &debug);
+    testNegStartStateFSMFile("./FSMnegStart.fsm", -1, &debug);
     printf("\nTest 11: ");
-    testWithValidFSMFile("./FSMdef.fsm", "./FSM50states.fsm", 1, &debug);
+    testLineTooLongFSMFile("./FSMlineLong.fsm", -1, &debug);
     printf("\nTest 12: ");
-    testTooManyInputs("./inTooMany.inputs", -1, &debug);
+    testWithValidFSMFile("./FSMdef.fsm", "./FSM50states.fsm", 1, &debug);
     printf("\nTest 13: ");
-    testEmptyInputFile("./inEmpty.inputs", -1, &debug);
+    testTooManyInputs("./inTooMany.inputs", -1, &debug);
     printf("\nTest 14: ");
-    testInvalidInputInFile("./inInvalid1.inputs", "./inInvalid2.inputs", -1, &debug);
+    testEmptyInputFile("./inEmpty.inputs", -1, &debug);
     printf("\nTest 15: ");
-    testValidInputInFile("./in.inputs", "./inWithCapitals.inputs",1, &debug);
+    testInvalidInputInFile("./inInvalid1.inputs", "./inInvalid2.inputs", -1, &debug);
     printf("\nTest 16: ");
-    testTooLargeNextState("./in.inputs", "./FSMnextStateInvalid.fsm", -1, &debug);
+    testValidInputInFile("./in.inputs", "./inWithCapitals.inputs",1, &debug);
     printf("\nTest 17: ");
-    testNegativeNextState("./in.inputs", "./FSMnegState.fsm", -1, &debug);
+    testTooLargeNextState("./FSMnextStateInvalid.fsm", -1, &debug);
     printf("\nTest 18: ");
-    testNumbersAndCharsNextState("./in.inputs", "./FSMnumcharState.fsm", -1, &debug);
+    testNegativeNextState("./FSMnegState.fsm", -1, &debug);
+    printf("\nTest 19: ");
+    testNumbersAndCharsNextState("./FSMnumcharState.fsm", -1, &debug);
     //we have now tested all functionality of the fileFunctions.h file
     //we will now test the transitionFunctions.h file
     //we dont need to test the function readInputs because all errors within the input file were caught in validInputLines -- checked syntax and num lines
-    printf("\nTest 19: ");
-    testInputHasNoMatch("./inWithCapitals.inputs", "./FSMdef.fsm", -1, &debug);
     printf("\nTest 20: ");
+    testInputHasNoMatch("./inWithCapitals.inputs", "./FSMdef.fsm", -1, &debug);
+    printf("\nTest 21: ");
     testInputandFSMValid("./inWithCapitals.inputs", "./FSMcapitalValid.fsm", 3, &debug);
     //we have now tested all functionality of the transitionFunctions.h file
 }
@@ -160,6 +163,13 @@ void testTooLargeStateFSMFile(char *fsm, int expect, const int *debug){
            (expect == result ? "PASSED" : "FAILED"),
            result, expect, result);
 }
+void testNoZeroStatesFSMFile(char *fsm, int expect, const int *debug){
+    printf("Passing FSM file without a transition for state 0.\n");
+    int result = validStartStates(fsm, debug);
+    printf("%s: result=%d, expected=%d, actual=%d\n",
+           (expect == result ? "PASSED" : "FAILED"),
+           result, expect, result);
+}
 void testNegStartStateFSMFile(char *fsm, int expect, const int *debug){
     printf("Passing FSM file with negative start state.\n");
     //printf("Expect Program to print out:Negative state numbers are not allowed in the FSM definition file.
@@ -173,13 +183,6 @@ void testLineTooLongFSMFile(char *fsm, int expect, const int *debug){
     printf("Passing FSM file with line that exceeds valid capacity of 24 characters (line error in the file has 25 characters).\n");
     //printf("Expect Program to print out:Line in FSM file exceeds length capacity.
     // Incorrect format of file. Terminating Program.");
-    int result = validStartStates(fsm, debug);
-    printf("%s: result=%d, expected=%d, actual=%d\n",
-           (expect == result ? "PASSED" : "FAILED"),
-           result, expect, result);
-}
-void testNoZeroStatesFSMFile(char *fsm, int expect, const int *debug){
-    printf("Passing FSM file without a transition for state 0.\n");
     int result = validStartStates(fsm, debug);
     printf("%s: result=%d, expected=%d, actual=%d\n",
            (expect == result ? "PASSED" : "FAILED"),
@@ -237,10 +240,7 @@ void testValidInputInFile(char *input, char *input2, int expect, const int *debu
            (expect == vAll ? "PASSED" : "FAILED"),
            vAll, expect, vAll);
 }
-//end of test functions for fileFunctions.h
-//we dont need to test the function readInputs because all errors with input file were caught in validInputLines -- checked syntax and num lines
-//but we will call readInputs to test findNextState bc it calls this function
-void testTooLargeNextState(char *input, char *fsm, int expect, const int *debug){
+void testTooLargeNextState(char *fsm, int expect, const int *debug){
     printf("Passing valid input file and fsm def file with state that exceeds int_max to transition into.\n");
     //printf("Expect Program to print out when it hits the invalid state transition:
     // Incorrect state transition value in FSM file at state "stateValue" and input "inputValue"
@@ -252,7 +252,7 @@ void testTooLargeNextState(char *input, char *fsm, int expect, const int *debug)
            (expect == state ? "PASSED" : "FAILED"),
            state, expect, state);
 }
-void testNegativeNextState(char *input, char *fsm, int expect, const int *debug){
+void testNegativeNextState(char *fsm, int expect, const int *debug){
     printf("Passing valid input file and fsm def file with negative state to transition into.\n");
     //printf("Expect Program to print out when it hits the invalid state transition:
     // Negative state numbers are not allowed in the FSM definition file. Terminating Program.");
@@ -264,7 +264,7 @@ void testNegativeNextState(char *input, char *fsm, int expect, const int *debug)
            state, expect, state);
 }
 
-void testNumbersAndCharsNextState(char *input, char *fsm, int expect, const int *debug){
+void testNumbersAndCharsNextState(char *fsm, int expect, const int *debug){
     printf("Passing valid input file and fsm def file with invalid next state to transition into (numbers and chars in state).\n");
     //printf("Expect Program to print out when it hits the invalid state transition:
     // Incorrect format for FSM start state. States must contain only numbers and no special characters (including a minus sign). Terminating Program.");
@@ -275,7 +275,9 @@ void testNumbersAndCharsNextState(char *input, char *fsm, int expect, const int 
            (expect == state ? "PASSED" : "FAILED"),
            state, expect, state);
 }
-
+//end of test functions for fileFunctions.h
+//we dont need to test the function readInputs because all errors with input file were caught in validInputLines -- checked syntax and num lines
+//but we will call readInputs to test findNextState bc it calls this function
 void testInputHasNoMatch(char *input, char *fsm, int expect, const int *debug){
     printf("Passing valid input file and fsm def file but some inputs are not in the fsm def file (i.e won't match any fsm def lines).\n");
     //printf("Expect Program to print out when it hits the input line with no match:
