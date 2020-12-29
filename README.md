@@ -44,39 +44,30 @@ Test 1: Passing too little command line arguments to program.
 PASSED: result=-1, expected=-1, actual=-1
 
 Test 2: Passing too many command line arguments to program.
-
 PASSED: result=-1, expected=-1, actual=-1
 
 Test 3: Passing invalid FSM definition file to program.
-
 PASSED: result=-1, expected=-1, actual=-1
 
 Test 4: Passing invalid Inputs file to program.
-
 PASSED: result=-1, expected=-1, actual=-1
 
 Test 5: Passing valid files to program.
-
 PASSED: result=1, expected=1, actual=1
 
 Test 6: Passing FSM file with too many states (51 to be exact).
-
 PASSED: result=-1, expected=-1, actual=-1
 
 Test 7: Passing FSM file with no states (i.e. empty).
-
 PASSED: result=-1, expected=-1, actual=-1
 
 Test 8: Passing FSM file without a transition for state 0.
-
 PASSED: result=-1, expected=-1, actual=-1
 
 Test 9: Passing FSM file with invalid start state (too large to be an int value).
-
 PASSED: result=-1, expected=-1, actual=-1
 
 Test 10: Passing FSM file with negative start state.
-
 PASSED: result=-1, expected=-1, actual=-1
 
 Test 11: Passing FSM file with line that exceeds valid capacity of 24 characters (line error in the file has 25 characters).
