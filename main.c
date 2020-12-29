@@ -24,6 +24,6 @@ int main(int argc, char *argv[]) {
     }
     //if we got here, it means our program ran successfully!
     step+=1;
-    printf("after %d steps, state machine finished successfully at state %d", step, finalState);
+    printf("after %d steps, state machine finished successfully at state %d\n", step, finalState);
 
 }
