@@ -77,27 +77,27 @@ include CMakeFiles/FinalProjCompSys.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/FinalProjCompSys.dir/flags.make
 
-CMakeFiles/FinalProjCompSys.dir/testProgram.c.o: CMakeFiles/FinalProjCompSys.dir/flags.make
-CMakeFiles/FinalProjCompSys.dir/testProgram.c.o: ../testProgram.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/juliechase/CLionProjects/FinalProjCompSys/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/FinalProjCompSys.dir/testProgram.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/FinalProjCompSys.dir/testProgram.c.o   -c /Users/juliechase/CLionProjects/FinalProjCompSys/testProgram.c
+CMakeFiles/FinalProjCompSys.dir/main.c.o: CMakeFiles/FinalProjCompSys.dir/flags.make
+CMakeFiles/FinalProjCompSys.dir/main.c.o: ../main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/juliechase/CLionProjects/FinalProjCompSys/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/FinalProjCompSys.dir/main.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/FinalProjCompSys.dir/main.c.o   -c /Users/juliechase/CLionProjects/FinalProjCompSys/main.c
 
-CMakeFiles/FinalProjCompSys.dir/testProgram.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/FinalProjCompSys.dir/testProgram.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/juliechase/CLionProjects/FinalProjCompSys/testProgram.c > CMakeFiles/FinalProjCompSys.dir/testProgram.c.i
+CMakeFiles/FinalProjCompSys.dir/main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/FinalProjCompSys.dir/main.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/juliechase/CLionProjects/FinalProjCompSys/main.c > CMakeFiles/FinalProjCompSys.dir/main.c.i
 
-CMakeFiles/FinalProjCompSys.dir/testProgram.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/FinalProjCompSys.dir/testProgram.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/juliechase/CLionProjects/FinalProjCompSys/testProgram.c -o CMakeFiles/FinalProjCompSys.dir/testProgram.c.s
+CMakeFiles/FinalProjCompSys.dir/main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/FinalProjCompSys.dir/main.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/juliechase/CLionProjects/FinalProjCompSys/main.c -o CMakeFiles/FinalProjCompSys.dir/main.c.s
 
 # Object files for target FinalProjCompSys
 FinalProjCompSys_OBJECTS = \
-"CMakeFiles/FinalProjCompSys.dir/testProgram.c.o"
+"CMakeFiles/FinalProjCompSys.dir/main.c.o"
 
 # External object files for target FinalProjCompSys
 FinalProjCompSys_EXTERNAL_OBJECTS =
 
-FinalProjCompSys: CMakeFiles/FinalProjCompSys.dir/testProgram.c.o
+FinalProjCompSys: CMakeFiles/FinalProjCompSys.dir/main.c.o
 FinalProjCompSys: CMakeFiles/FinalProjCompSys.dir/build.make
 FinalProjCompSys: CMakeFiles/FinalProjCompSys.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/juliechase/CLionProjects/FinalProjCompSys/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable FinalProjCompSys"

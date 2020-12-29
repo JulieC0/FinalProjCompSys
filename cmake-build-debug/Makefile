@@ -143,32 +143,32 @@ FinalProjCompSys/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProjCompSys.dir/build.make CMakeFiles/FinalProjCompSys.dir/build
 .PHONY : FinalProjCompSys/fast
 
-testProgram.o: testProgram.c.o
+main.o: main.c.o
 
-.PHONY : testProgram.o
+.PHONY : main.o
 
 # target to build an object file
-testProgram.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProjCompSys.dir/build.make CMakeFiles/FinalProjCompSys.dir/testProgram.c.o
-.PHONY : testProgram.c.o
+main.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProjCompSys.dir/build.make CMakeFiles/FinalProjCompSys.dir/main.c.o
+.PHONY : main.c.o
 
-testProgram.i: testProgram.c.i
+main.i: main.c.i
 
-.PHONY : testProgram.i
+.PHONY : main.i
 
 # target to preprocess a source file
-testProgram.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProjCompSys.dir/build.make CMakeFiles/FinalProjCompSys.dir/testProgram.c.i
-.PHONY : testProgram.c.i
+main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProjCompSys.dir/build.make CMakeFiles/FinalProjCompSys.dir/main.c.i
+.PHONY : main.c.i
 
-testProgram.s: testProgram.c.s
+main.s: main.c.s
 
-.PHONY : testProgram.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-testProgram.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProjCompSys.dir/build.make CMakeFiles/FinalProjCompSys.dir/testProgram.c.s
-.PHONY : testProgram.c.s
+main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProjCompSys.dir/build.make CMakeFiles/FinalProjCompSys.dir/main.c.s
+.PHONY : main.c.s
 
 # Help Target
 help:
@@ -179,9 +179,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... FinalProjCompSys"
-	@echo "... testProgram.o"
-	@echo "... testProgram.i"
-	@echo "... testProgram.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 
