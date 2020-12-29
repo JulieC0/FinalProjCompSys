@@ -9,7 +9,7 @@
 #define lineMaxFSM 30
 #define stateMax 15
 #define fiftyStatesMax 600
-#define maxFSMLineLength 25
+#define maxFSMValidLine 24
 #define intakeMax 26
 #define maxIntLength 10
 #define maxNumStates 50
@@ -93,7 +93,7 @@ int validStartStates(char *fsmFile) {
             //so if the fsm def line is longer than 25 characters, then the string length we grab will equal 25
             //i.e. if the line was longer than 25 characters, then strlen(holder) will be the max we grab which is 25
             //we can only validly take 24 characters at a time - so we expect strlen(holder)<=24 if valid
-            if (strlen(holder)>=maxFSMLineLength){
+            if (strlen(holder)>maxFSMValidLine){
                 printf("Line in FSM file exceeds length capacity. Incorrect format of file. Terminating Program.");
                 fclose(fsm);
                 return error; //failure signal
@@ -124,6 +124,8 @@ int validStartStates(char *fsmFile) {
                 // enough room for 50 separators and 50 ints of size 10
                 const char* separator = "|"; //this is how our states are separated
                 strcpy(statesCopy, states); // copy states
+                //below code using strtok and while loop idea was taken from
+                //https://www.tutorialspoint.com/c_standard_library/c_function_strtok.htm
                 char *eachState = strtok(statesCopy, separator); //eachState will no refer to each state in our states array
                 int compare;
                 while (eachState!= NULL){
