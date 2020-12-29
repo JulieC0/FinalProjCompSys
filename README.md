@@ -1,6 +1,7 @@
 # FinalProjCompSys
 To run this program, please enter from the command line in the directory to which you dowload these files ./main followed by an FSM definition file name and an inputs file name.
-For example, to get the results:
+For example, to get the results: 
+
 processing FSM definition file test1.fsm
 FSM has 16 transitions
 processing FSM inputs file test1.inputs
